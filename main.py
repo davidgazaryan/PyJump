@@ -9,7 +9,7 @@ game_active = False
 screen = pygame.display.set_mode([800,400])
 
 test_font = pygame.font.Font(None,40)
-text_surface = test_font.render('My game',False,'black')
+text_surface = test_font.render('PyJump',False,(51,51,51))
 
 bison_image = pygame.image.load('characters/Bison.png').convert_alpha()
 bison_image = pygame.transform.scale(bison_image,[90,90])
@@ -115,16 +115,13 @@ class Obstacle(pygame.sprite.Sprite):
 
 class Background:
     def __init__(self):
-        pygame.display.set_caption('My first game')
-        self.score = test_font.render('Score:',False,'red')
+        pygame.display.set_caption('PyJump')
+        self.score = test_font.render('Score:',False,(51,51,51))
         self.count_score = 0
 
     def score_text(self):
-        score = self.score.get_rect(topright = (730,30))
+        score = self.score.get_rect(topright = (760,11))
         screen.blit(self.score,score)
-
-    def score_background(self):  # Function to have score be in the top right
-        return pygame.draw.rect(screen,'black',self.score.get_rect(topright = (730,30)),50)
 
     def score_count(self):
         key_pressed = pygame.key.get_pressed()
@@ -132,8 +129,8 @@ class Background:
 
         self.count_score += len([obstacle for obstacle in obstacles if obstacle.rect.left <= 0])
 
-        count: str = test_font.render(str(self.count_score),False,(50,250,50))
-        score_rect = count.get_rect(midtop=(740,32))
+        count: str = test_font.render(str(self.count_score),False,(255,255,255))
+        score_rect = count.get_rect(midtop=(775,12))
         screen.blit(count,score_rect)
 
     @staticmethod
@@ -144,7 +141,7 @@ class Background:
 
     @staticmethod
     def title(self):
-        return screen.blit(text_surface, [350, 25])
+        return screen.blit(text_surface, [345, 10])
 
 
 def obstacle_collisions():
@@ -216,7 +213,7 @@ while True:
     if game_active:
         Background.surfaces(None)
 
-        my_game.score_background()
+
         my_game.score_text()
         my_game.title(None)
 
@@ -238,7 +235,7 @@ while True:
         obstacle_rect_list.clear()  # Clears the list so that game can start right away and enemies start at initial positions
         screen.fill(color='gold')
 
-        score_render = test_font.render(str(my_game.score_count()),False,'White')
+        score_render = test_font.render(str(my_game.score_count()),False,'white')
 
         loading_title = pygame.font.SysFont('Comic Sans MS', 60,True,False)
         loading_title = loading_title.render('Jumpman',False,(200,50,50))
@@ -259,5 +256,3 @@ while True:
 
     pygame.display.update()
     clock.tick(60)  # While loop should not run faster than 60 times per second
-
-
