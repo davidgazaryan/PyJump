@@ -11,19 +11,19 @@ screen = pygame.display.set_mode([800,400])
 test_font = pygame.font.Font(None,40)
 text_surface = test_font.render('My game',False,'black')
 
-bison_image = pygame.image.load('Bison.png').convert_alpha()
+bison_image = pygame.image.load('characters/Bison.png').convert_alpha()
 bison_image = pygame.transform.scale(bison_image,[90,90])
 bison_rectangle = bison_image.get_rect(bottomright= (700,350))
 
-bat_image = pygame.image.load('Bat.png').convert_alpha()
+bat_image = pygame.image.load('characters/Bat.png').convert_alpha()
 bat_image = pygame.transform.scale(bat_image,(80,80))
 bat_rectangle = bat_image.get_rect(bottomright= (700,350))
 
-player_image_1 = pygame.image.load('Mario.png').convert_alpha()
+player_image_1 = pygame.image.load('characters/Mario.png').convert_alpha()
 player_image_1 = pygame.transform.scale(player_image_1,[75,75])
-player_image_2 = pygame.image.load('Mario1.png').convert_alpha()
+player_image_2 = pygame.image.load('characters/Mario1.png').convert_alpha()
 player_image_2 = pygame.transform.scale(player_image_2, (75,75))
-player_jump = pygame.image.load('Mariojump.png').convert_alpha()
+player_jump = pygame.image.load('characters/Mariojump.png').convert_alpha()
 player_jump = pygame.transform.scale(player_jump, (75,75))
 
 player_walk = [player_image_1, player_image_2]
@@ -41,11 +41,11 @@ obstacle_rect_list = []
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        player_image_1 = pygame.image.load('Mario.png').convert_alpha()
+        player_image_1 = pygame.image.load('characters/Mario.png').convert_alpha()
         player_image_1 = pygame.transform.scale(player_image_1, [75, 75])
-        player_image_2 = pygame.image.load('Mario1.png').convert_alpha()
+        player_image_2 = pygame.image.load('characters/Mario1.png').convert_alpha()
         player_image_2 = pygame.transform.scale(player_image_2, (75, 75))
-        self.player_jump = pygame.image.load('Mariojump.png').convert_alpha()
+        self.player_jump = pygame.image.load('characters/Mariojump.png').convert_alpha()
         self.player_jump = pygame.transform.scale(self.player_jump, (75, 75))
         self.player_walk = [player_image_1, player_image_2]
         self.player_index = 0
@@ -90,12 +90,12 @@ class Obstacle(pygame.sprite.Sprite):
         super().__init__()
 
         if type == 'bat':
-            bat_image = pygame.image.load('Bat.png').convert_alpha()
+            bat_image = pygame.image.load('characters/Bat.png').convert_alpha()
             bat_image = pygame.transform.scale(bat_image, (80, 80))
             y_position = 200
             self.image = bat_image
         else:
-            bison_image = pygame.image.load('Bison.png').convert_alpha()
+            bison_image = pygame.image.load('characters/Bison.png').convert_alpha()
             bison_image = pygame.transform.scale(bison_image, [90, 90])
             y_position = 350
             self.image = bison_image
