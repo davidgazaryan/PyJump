@@ -28,3 +28,10 @@ Collision with an enemy will result in the termination of the game and it will t
 ## Screenshot of The Project        📸
 
 <img width="912" alt="Screen Shot 2023-11-16 at 12 17 40 PM" src="https://github.com/davidgazaryan/PyJump/assets/126544535/7046353c-ffef-42ed-9fb6-58c65cfffa8f">
+
+
+
+
+
+Background image:
+<a href="https://www.freepik.com/free-vector/nature-roadside-background-scene_40169781.htm#query=game%20background&position=31&from_view=search&track=ais&uuid=74c91145-3bd5-4ae6-a171-1bb465a43027">Image by brgfx</a> on Freepik
