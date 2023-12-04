@@ -127,7 +127,7 @@ class Background:
         key_pressed = pygame.key.get_pressed()
         if key_pressed[pygame.K_r]: self.count_score = 0
 
-        self.count_score += len([obstacle for obstacle in obstacles if obstacle.rect.left <= 0])
+        self.count_score += len([obstacle for obstacle in obstacles if obstacle.rect.left <= 0]) #Add 1 for each object leaving screen
 
         count: str = test_font.render(str(self.count_score),False,(255,255,255))
         score_rect = count.get_rect(midtop=(775,12))
