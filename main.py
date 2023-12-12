@@ -196,63 +196,67 @@ obstacles = pygame.sprite.Group()
 clock = pygame.time.Clock()
 my_game = Background()
 
-while True:
-    key = pygame.key.get_pressed()
-    for event in pygame.event.get():
-        QUIT = pygame.key.get_pressed()
-        if QUIT[pygame.K_ESCAPE]:  # If escape is pressed anytime during game, game exits
-            pygame.quit()
-            sys.exit()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                player_sprite.apply_gravity()
+def main():
+    while True:
+        key = pygame.key.get_pressed()
+        for event in pygame.event.get():
+            QUIT = pygame.key.get_pressed()
+            if QUIT[pygame.K_ESCAPE]:  # If escape is pressed anytime during game, game exits
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    player_sprite.apply_gravity()
+    
+            if event.type == timer and game_active:
+                obstacles.add(Obstacle(choice(['bat','bison','bison'])))  # Put bison twice so that more bison spawn than bats statistically speaking
+    
+        if game_active:
+            Background.surfaces(None)
+    
+    
+            my_game.score_text()
+            my_game.title(None)
+    
+            player.draw(screen)
+            player.update()
+    
+            obstacles.draw(screen)
+            obstacles.update()
+    
+            obstacle_collisions()
+    
+            my_game.score_count()
+    
+            if bison_rectangle.colliderect(50,50,25,50):
+                game_active = False
+    
+    
+        elif not game_active:
+            obstacle_rect_list.clear()  # Clears the list so that game can start right away and enemies start at initial positions
+            screen.fill(color='gold')
+    
+            score_render = test_font.render(str(my_game.score_count()),False,'white')
+    
+            loading_title = pygame.font.SysFont('Comic Sans MS', 60,True,False)
+            loading_title = loading_title.render('Jumpman',False,(200,50,50))
+            load_screen = pygame.transform.scale(player_image_1,(150,150))
+            screen.blits([(load_screen,(320,120)),(loading_title,(280,10))])
+    
+            restart = test_font.render('Click r to restart',False,'Black')
+            game_quit = pygame.font.Font.render(test_font,'Click q to exit game',False,'Black')
+            screen.blits([(restart,(275,350)),(game_quit,(250,300))])
+    
+            if key[pygame.K_r]:
+                game_active = True
+    
+            elif key[pygame.K_q]:
+                pygame.quit()
+                sys.exit()
+    
+        pygame.display.update()
+        clock.tick(60)  # While loop should not run faster than 60 times per second
 
-        if event.type == timer and game_active:
-            obstacles.add(Obstacle(choice(['bat','bison','bison'])))  # Put bison twice so that more bison spawn than bats statistically speaking
-
-    if game_active:
-        Background.surfaces(None)
-
-
-        my_game.score_text()
-        my_game.title(None)
-
-        player.draw(screen)
-        player.update()
-
-        obstacles.draw(screen)
-        obstacles.update()
-
-        obstacle_collisions()
-
-        my_game.score_count()
-
-        if bison_rectangle.colliderect(50,50,25,50):
-            game_active = False
-
-
-    elif not game_active:
-        obstacle_rect_list.clear()  # Clears the list so that game can start right away and enemies start at initial positions
-        screen.fill(color='gold')
-
-        score_render = test_font.render(str(my_game.score_count()),False,'white')
-
-        loading_title = pygame.font.SysFont('Comic Sans MS', 60,True,False)
-        loading_title = loading_title.render('Jumpman',False,(200,50,50))
-        load_screen = pygame.transform.scale(player_image_1,(150,150))
-        screen.blits([(load_screen,(320,120)),(loading_title,(280,10))])
-
-        restart = test_font.render('Click r to restart',False,'Black')
-        game_quit = pygame.font.Font.render(test_font,'Click q to exit game',False,'Black')
-        screen.blits([(restart,(275,350)),(game_quit,(250,300))])
-
-        if key[pygame.K_r]:
-            game_active = True
-
-        elif key[pygame.K_q]:
-            pygame.quit()
-            sys.exit()
-
-
-    pygame.display.update()
-    clock.tick(60)  # While loop should not run faster than 60 times per second
+if __name__ == "__main__":
+    main()
+    
