@@ -8,7 +8,7 @@ game_active = False
 
 screen = pygame.display.set_mode([800,400])
 
-test_font = pygame.font.Font(None,40)
+test_font = pygame.font.Font(None,35)
 text_surface = test_font.render('PyJump',False,(51,51,51))
 
 bison_image = pygame.image.load('characters/Bison.png').convert_alpha()
