@@ -143,7 +143,6 @@ class Background:
     def title(self):
         return screen.blit(text_surface, [345, 10])
 
-
 def obstacle_collisions():
     global game_active
     if pygame.sprite.spritecollide(player.sprite,obstacles,False):
@@ -186,7 +185,6 @@ def obstacle_collision(character, obstacle_list):
 
     return True
 
-
 player = pygame.sprite.GroupSingle()
 player_sprite = Player()
 player.add(player_sprite)
@@ -213,8 +211,7 @@ def main():
     
         if game_active:
             Background.surfaces(None)
-    
-    
+
             my_game.score_text()
             my_game.title(None)
     
@@ -230,8 +227,7 @@ def main():
     
             if bison_rectangle.colliderect(50,50,25,50):
                 game_active = False
-    
-    
+     
         elif not game_active:
             obstacle_rect_list.clear()  # Clears the list so that game can start right away and enemies start at initial positions
             screen.fill(color='gold')
